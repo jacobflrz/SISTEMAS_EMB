@@ -2,7 +2,9 @@ site_name: SISTEMAS EMBEBIDOS
 
 nav:
   - Inicio: index.md
-  - Prácticas: index2.md
+  - Práctica 1: practica1.md
+  - Práctica 2: practica2.md
+  - Práctica 3: practica3.md
   - Proyecto Final: index3.md
 
 markdown_extensions:

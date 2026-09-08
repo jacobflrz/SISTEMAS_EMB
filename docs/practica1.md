@@ -1,18 +1,23 @@
-# Session 1 - GPIO
+# Session 1 - Using low level SIO type instructions to register a blink pulse with mesurment
 
-``` codigo
-# Título H1
-## Título H2
-### Título H3
-```
+--- 
 
-# Título H1
-## Título H2
-### Título H3
+**Goal:** Modify the default blink testing code to use SIO low level instruction and mesaure the ON on the osciloscope.
+
+**Prediction:** the osciloscope will help us measure the ON of the blink, but because of the `sleep_ms(500)` before the `sio_clr` we may have a distict delay on the reading of the value, we also expect this delay to be non significant since **SIO** is supoussed to be a more efficient type of instruction.
 
 ---
 
-# Énfasis y código en línea
+## Setup 
+
+- Item A
+    * Subitem A.1
+    * Subitem A.2
+- Item B
+    - Subitem B.1
+    - Subitem B.2
+
+---
 
 ``` codigo
 **negritas**, *cursivas*, ~~tachado~~, `código en línea`

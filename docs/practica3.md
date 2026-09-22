@@ -157,3 +157,7 @@ while (true) {
 }
 
 ```
+
+## Open question
+
+- When executing multiple bitwise states sequentially, is there a direct low-level SIO hardware register that can atomically replace the entire GPIO mask state in a single CPU cycle, avoiding the two-step `gpio_clr` followed by `gpio_set` sequence?

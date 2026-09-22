@@ -2,11 +2,13 @@ site_name: SISTEMAS EMBEBIDOS
 
 nav:
   - Inicio: index.md
-  - Práctica 1: practica1.md
-  - Práctica 2: practica2.md
-  - Práctica 3: practica3.md
-  - Práctica 4: practica4.md
-  - Proyecto Final: index3.md
+  - Session 1: practica1.md
+  - Session 2: practica2.md
+  - Session 3: practica3.md
+  - Session 4: practica4.md
+  - Session 5: practica5.md
+  - Session 6: practica6.md   
+  - Final Project: index3.md
 
 markdown_extensions:
   - pymdownx.highlight:

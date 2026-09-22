@@ -72,9 +72,6 @@
 
 ## Code
 
-
-```
-
     // Initialize pins as inputs
     for (int i = 0; i < 3; i++) {
         gpio_init(PINS[i]);
@@ -96,4 +93,7 @@
         sleep_ms(200);
     }
 
-´´´
+
+## Open question
+
+- Since reading the full 32-bit input register returns the raw binary weight `2^ pin` rather than a normalized boolean (0 or 1), is reading the entire register at once computationally preferred when scanning buses or parallel ports compared to invoking individual pin-by-pin `gpio_get()` calls?

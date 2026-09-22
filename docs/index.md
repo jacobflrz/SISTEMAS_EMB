@@ -1,14 +1,12 @@
-# Documentación del Proyecto
+# THE DREAM TEAM
 
-Bienvenido 👋  
-Esta es una **plantilla** basada en [MkDocs](https://www.mkdocs.org/) + [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) para cursos y proyectos.
+WE ARE A DUO, A LEGENDARY DUO, THE PEANUT OF THE BUTTER, WE ARE
+
+**SEBASTIAN SOLORZANO HERRERA AND JUAN JACOBO FLOREZ**
+
+![Diagrama del sistema](recursos/imgs/GAY1.jpeg)
+![Diagrama del sistema](recursos/imgs/GAY2.jpeg)
+![Diagrama del sistema](recursos/imgs/GAY3.jpeg)
+
 
 ---
-
-## Empezar rápido (3 pasos)
-
-1. **Edita el nombre del sitio** en `mkdocs.yml`:
-   ```yaml
-   site_name: Documentación del Curso
-   theme:
-     name: material

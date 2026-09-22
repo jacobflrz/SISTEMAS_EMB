@@ -14,6 +14,7 @@
   
 - Photo:
 
+![Diagrama del sistema](recursos/imgs/setup1.jpeg)
 
 - Non-default: Nothing, the only change on the scope was the scaling values for visualization purposes
     
@@ -29,7 +30,7 @@
 ---
 ## Evidence
 
-![Oscilloscope Capture - SIO Blink 29Hz](assets/oscilloscope_29hz.png)
+![Diagrama del sistema](recursos/imgs/osciloscopio.jpeg)
 *Figure 1: Oscilloscope capture showing the waveform on GPIO2 operating at a measured frequency of ~29 Hz.*
 
 ---

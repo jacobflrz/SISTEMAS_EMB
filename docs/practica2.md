@@ -18,7 +18,8 @@
   - All LED cathodes connected to common ground through current-limiting resistors.
 
 - Photo:
-  ![Setup Photo](assets/session2_setup.png)
+
+  ![setup](recursos/imgs/setup2.jpeg)
 
 - Non-default: None. No external measurement equipment was used; verification was conducted purely via visual output of the LED array.
 
@@ -37,11 +38,11 @@
 
 ## Evidence
 
-<video controls width="100%">
-  <source src="assets/binary_counter_demo.mp4" type="video/mp4">
+<video controls width="90%">
+  <source src="../recursos/vids/Conteo_binario.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
-*Figure 1: Video demonstration showing the 4-bit binary counter sequence from 0 to 15 across GP2–GP5.*
+*Figure: Video demonstration showing the 4-bit binary counter sequence from 0 to 15.*
 
 ---
 

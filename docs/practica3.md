@@ -18,7 +18,8 @@
   - All LED cathodes connected to common ground through current-limiting resistors.
 
 - Photo:
-  ![Setup Photo](assets/session3_setup.png)
+  ![Setup Photo](recursos/imgs/setup2.jpeg)
+*FIgure: is the same setup as in the counter excersice, the hardware logic did not change*
 
 - Non-default: None. Verification was performed through direct visual inspection of the LED sequence timing.
 
@@ -27,9 +28,9 @@
 ## What we did 
 
 1. Configured pins `GP2` through `GP5` as GPIO outputs using SIO register direct configuration (`sio_hw->gpio_oe_set = MASK`).
-2. **Sequence 1 (Ping-Pong / Chaser):** Implemented a walking bit that shifts left (`<<= 1`) or right (`>>= 1`) depending on a direction toggle evaluated at boundary conditions (`1u << PIN_D` and `1u << PIN_A`).
-3. **Sequence 2 (Progressive Fill & Drain):** Constructed paired bitwise loops where `(pattern << 1) | 1` feeds trailing ones to fill the bar, and `(pattern << 1) & 0x0F` drains it progressively.
-4. **Sequence 3 (Symmetric Inversion):** Refactored the manual sequence into an iterating bitmask pipeline that cycles through symmetric complements (`0b1001`, `0b1111`, `0b0110`, `0b0000`) dynamically using bitwise operations without redundant register writes.
+2. **Sequence 1:** Implemented a walking bit that shifts left (`<<= 1`) or right (`>>= 1`) depending on a direction toggle evaluated at boundary conditions (`1u << PIN_D` and `1u << PIN_A`).
+3. **Sequence 2 :** Constructed paired bitwise loops where `(pattern << 1) | 1` feeds trailing ones to fill the bar, and `(pattern << 1) & 0x0F` drains it progressively.
+4. **Sequence 3 :** Defined the outer edges (`pattern`) and full mask (`all`), using bitwise XOR (`0b1111 ^ 0b1001`) to generate the inverted inner pair (`pattern2`), cycling symmetrically through edges, full array, center, and blank intervals.
 5. Compiled and uploaded the binaries using the `Run` button in VS Code.
 6. Verified sequence timing and transitions on the hardware setup.
 
@@ -37,10 +38,10 @@
 
 ## Evidence
 
-### Sequence 1: Ping-Pong Chaser
+### Sequence 1: 
 
-<video controls width="100%">
-  <source src="assets/sequence1_pingpong.mp4" type="video/mp4">
+<video controls width="50%">
+  <source src="../recursos/vids/Bouncing_led.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 

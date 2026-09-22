@@ -1,268 +1,89 @@
-# Session 2 - Using low level SIO type instructions and bitwise operations to make a counter
+# Session 2 - Using low-level SIO type instructions and bitwise operations to make a counter
 
 --- 
 
-**Goal:** Use the knowledge about GPIO, and memory using bitwise operations to use a 4 LED array as a sequential 4-bit counter.
+**Goal:** Use knowledge about GPIO, memory access, and bitwise operations to drive a 4-LED array as a sequential 4-bit binary counter.
 
-**Prediction:** The use of shift (`<< >>`) will be crucial, and will help us visualize the counting of binary numbers
+**Prediction:** The use of bit shifts (`<<`, `>>`) and bitmasking will be crucial, helping us visualize binary counting across sequential pins with minimal CPU overhead using direct SIO register manipulation.
 
 ---
 
 ## Setup 
 
-- Item A
-    * Subitem A.1
-    * Subitem A.2
-- Item B
-    - Subitem B.1
-    - Subitem B.2
+- Pin map: 
+  - Bit 0 : LED A = `GP2`
+  - Bit 1: LED B = `GP3`
+  - Bit 2: LED C = `GP4`
+  - Bit 3 (MSB): LED D = `GP5`
+  - All LED cathodes connected to common ground through current-limiting resistors.
+
+- Photo:
+  ![Setup Photo](assets/session2_setup.png)
+
+- Non-default: None. No external measurement equipment was used; verification was conducted purely via visual output of the LED array.
 
 ---
 
 ## What we did 
 
-- Create a new proyect in the VS Code Pico extension and modify the existent SIO-blink code provided in the class resources.
-
-- Created a `counter`variable, and used basic bitwise operations to move the bits inside de 32-bit memory to 4 corresponding sequential pins to perform de counting operations.
-
-- Compile using the `run`option inside VS Code-
-
-- Verify and debug the sequence in wich the LED`S blinked 
-
-
-
-``` codigo
-**negritas**, *cursivas*, ~~tachado~~, `código en línea`
-```
-
-**negritas**, *cursivas*, ~~tachado~~, `código en línea`
+1. Created a new project in the VS Code Pico extension and modified the existing SIO-blink code provided in the class resources.
+2. Defined the 4-bit composite mask (`MASK`) using bitwise OR operations across `PIN_A` through `PIN_D` and enabled their outputs via `sio_hw->gpio_oe_set`.
+3. Created a `counter` variable initialized at `0b0000`. Inside the loop, cleared the entire mask, shifted `counter` to the base offset (`PIN_A`), and wrote it directly to `sio_hw->gpio_set`.
+4. Handled reset conditions when `counter > 0b1111` to restart the cycle at `0b0000`.
+5. Compiled using the `Run` button inside VS Code.
+6. Verified and debugged the visual sequence in which the LEDs blinked.
 
 ---
 
-# Citas (blockquote)
+## Evidence
 
-``` codigo
-> Esta es una cita destacada.
-> Puede tener múltiples líneas.
-```
-
-> Esta es una cita destacada.
-> Puede tener múltiples líneas.
+<video controls width="100%">
+  <source src="assets/binary_counter_demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+*Figure 1: Video demonstration showing the 4-bit binary counter sequence from 0 to 15 across GP2–GP5.*
 
 ---
 
-# Enlaces
+## Predicted vs measured
 
-``` codigo
-[Enlace directo](https://www.iberopuebla.mx/)
+| Parameter / Feature | Predicted | Observed Behavior | Status |
+|:--------------------|:---------:|:-----------------:|:------:|
+| Counting Range      | 0 to 15 (`0000` to `1111`) | 16 sequential states displayed | Verified |
+| Rollover Action     | Reset to `0000` after 15 | Resets cleanly on `counter > 0b1111` | Verified |
+| Interval Time       | 250 ms OFF / 250 ms ON | 500 ms total period per increment | Verified |
+| Pin Alignment       | GP2 (LSB) to GP5 (MSB) | Shift `counter << PIN_A` matches array order | Verified |
 
-[Texto del enlace de referencia][doc-ref]
+--- 
 
-[doc-ref]: https://www.iberopuebla.mx//docs "Título opcional"
-```
+## What went wrong
 
-[Enlace directo](https://www.iberopuebla.mx/)
+- We first forgot to shift our bits to the right pin so, the bit stayed floating somewhere in the memory, when we shifted `<<`. This was corrected by properly shifting the counter value to match the base offset of the GPIO pins (`counter << PIN_A`).
 
-[Texto del enlace de referencia][doc-ref]
-
-[doc-ref]: https://www.iberopuebla.mx//docs "Título opcional"
-
----
-
-# Listas: viñetas, numeradas y de tareas
-
-``` codigo
-
-- Item A
-    * Subitem A.1
-    * Subitem A.2
-- Item B
-    - Subitem B.1
-    - Subitem B.2
-
-1.  Paso 1
-    1.  Paso 1.1
-    2.  Paso 1.2
-        1.  Paso 1.2.1
-        2.  Paso 1.2.2
-        
-- [x] Hecho
-- [ ] Pendiente
-
-```
-
-- Item A
-    * Subitem A.1
-    * Subitem A.2
-- Item B
-    - Subitem B.1
-    - Subitem B.2
 
 ---
 
-1.  Paso 1
-    1.  Paso 1.1
-    2.  Paso 1.2
-        1.  Paso 1.2.1
-        2.  Paso 1.2.2
-        
-- [x] Hecho
-- [ ] Pendiente
+## Code
 
----
-
-# Tablas
-
-``` codigo
-| Componente | Cant. | Nota        |
-|-----------:|:-----:|-------------|
-| Sensor X   | 2     | I2C         |
-| MCU Y      | 1     | WiFi/BLE    |
 ```
+const uint32_t MASK = (1u << PIN_A) | (1u << PIN_B) | (1u << PIN_C) | (1u << PIN_D);
 
-| Componente | Cant. | Nota        |
-|-----------:|:-----:|-------------|
-| Sensor X   | 2     | I2C         |
-| MCU Y      | 1     | WiFi/BLE    |
+sio_hw->gpio_oe_set = MASK;
 
----
+while (true) {
+    sio_hw->gpio_clr = MASK;
+    sleep_ms(250);
+    sio_hw->gpio_set = counter << PIN_A;
+    sleep_ms(250);
+    counter++;
 
-# Imágenes
-
-``` codigo
-![Diagrama del sistema](recursos/imgs/ibero.jpeg)
-
-<!-- Control de tamaño usando HTML (cuando se requiera) -->
-<img src="../recursos/imgs/ibero.jpeg" alt="Diagrama del sistema" width="420">
-```
-
-![Diagrama del sistema](recursos/imgs/ibero.jpeg)
-
-<img src="../recursos/imgs/ibero.jpeg" alt="Diagrama del sistema" width="420">
-
----
-
-# PDFs (enlace y embebido)
-
-``` codigo
-[Descargar especificación (PDF)](recursos/archivos/Calendario.pdf)
-
-<!-- Embed (requiere navegador compatible) -->
-<object data="recursos/archivos/Calendario.pdf" type="application/pdf" width="100%" height="600">
-  <p>No se pudo mostrar el PDF. <a href="../recursos/archivos/Calendario.pdf">Descargar</a></p>
-</object>
-```
-
-[Descargar especificación (PDF)](recursos/archivos/Calendario.pdf)
-
-<object data="../recursos/archivos/Calendario.pdf" type="application/pdf" width="100%" height="600">
-  <p>No se pudo mostrar el PDF. <a href="../recursos/archivos/Calendario.pdf">Descargar</a></p>
-</object>
-
----
-
-# Admonitions (Material)
-
-``` codigo
-!!! note "Nota"
-    Esto es una nota informativa.
-
-!!! tip "Sugerencia"
-    Un consejo breve para el usuario.
-
-!!! warning "Advertencia"
-    Precauciones o riesgos a considerar.
-
-??? info "Más información (colapsable)"
-    Contenido adicional que se puede expandir.
-```
-
-!!! note "Nota"
-    Esto es una nota informativa.
-
-!!! tip "Sugerencia"
-    Un consejo breve para el usuario.
-
-!!! warning "Advertencia"
-    Precauciones o riesgos a considerar.
-
-??? info "Más información (colapsable)"
-    Contenido adicional que se puede expandir.
-
----
-
-# Código con resaltado
-
-``` codigo
-```python
-def medir(canal: int) -> dict:
-    # Simulación de lectura
-    return {"canal": canal, "valor": 523, "unidad": "mV"}
-
-print(medir(1))
-```
-```
-
-```python
-def medir(canal: int) -> dict:
-    # Simulación de lectura
-    return {"canal": canal, "valor": 523, "unidad": "mV"}
-
-print(medir(1))
+    if (counter > 0b1111) {
+        counter = 0b0000;
+    }
+}
 ```
 
 ---
+## Open question
 
-# Separador horizontal
-
-``` codigo
----
-```
-
----
-
----
-
-# Listas anidadas con código y notas
-
-``` codigo
-- **Módulo A**
-  - Función: `procesar()`
-  - Entrada:
-    - `signal` (float)
-    - `freq` (Hz)
-  - Salida:
-    - JSON con `valor`, `unidad`
-  - !!! note
-        Documenta rangos válidos y casos borde.
-```
-
-- **Módulo A**
-  - Función: `procesar()`
-  - Entrada:
-    - `signal` (float)
-    - `freq` (Hz)
-  - Salida:
-    - JSON con `valor`, `unidad`
-  - !!! note
-        Documenta rangos válidos y casos borde.
-
----
-
-# Bloques de cita con código (pseudo-logs)
-
-``` codigo
-> **Log:**
-> ```
-> [12:00:00] Init OK
-> [12:00:01] Conectando a I2C...
-> [12:00:02] Lectura: 523 mV
-> ```
-```
-
-> **Log:**
-> ```
-> [12:00:00] Init OK
-> [12:00:01] Conectando a I2C...
-> [12:00:02] Lectura: 523 mV
-> ```
+- Since clearing the pins with `sio_hw->gpio_clr = MASK;` followed by `sleep_ms(250)` produces an explicit OFF blanking interval between each count step, is there a low-level SIO instruction to update all 4 bits in a single cycle without turning off the entire array first?

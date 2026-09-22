@@ -44,13 +44,13 @@
   <source src="../recursos/vids/Bouncing_led.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
-
-*Figure 1: Single LED scanning back and forth between GP2 and GP5.*
+*Figure 1: Single LED scanning back and forth*
 
 ### Sequence 2: Progressive Fill & Drain
 
-<video controls width="100%">
-  <source src="assets/sequence2_fill_drain.mp4" type="video/mp4">
+<video controls width="50%">
+  <source src="../recursos/vids/Fill_and_empty.mp4" type="video/mp4">
+
   Your browser does not support the video tag.
 </video>
 
@@ -58,8 +58,9 @@
 
 ### Sequence 3: Symmetric Inversion
 
-<video controls width="100%">
-  <source src="assets/sequence3_symmetric.mp4" type="video/mp4">
+<video controls width="80%">
+  <source src="../recursos/vids/Fill_outside.mp4" type="video/mp4">
+
   Your browser does not support the video tag.
 </video>
 

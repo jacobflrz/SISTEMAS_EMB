@@ -17,7 +17,7 @@
   - Common ground tied between the Pico 2 GND rail and the breadboard bus.
 
 - Photo:
-  ![Setup Photo](assets/session5_setup.png)
+  ![Setup Photo](recursos/imgs/imput.jpeg)
 
 - Non-default: Internal pull-downs were activated in software on `GP2` and `GP3` so that active inputs read as clean logic `1` upon closure without requiring discrete external pull-down resistors.
 

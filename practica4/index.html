@@ -1,0 +1,892 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../practica3/">
+      
+      
+        <link rel="next" href="../practica5/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Session 4 - SISTEMAS EMBEBIDOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="yellow">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#session-4-digital-inputs-and-bitmask-register-inspection-via-serial-monitor" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SISTEMAS EMBEBIDOS" class="md-header__button md-logo" aria-label="SISTEMAS EMBEBIDOS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SISTEMAS EMBEBIDOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Session 4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="yellow"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SISTEMAS EMBEBIDOS" class="md-nav__button md-logo" aria-label="SISTEMAS EMBEBIDOS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SISTEMAS EMBEBIDOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 4
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-did" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What we did
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#serial-monitor-register-readings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serial Monitor Register Readings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predicted-vs-measured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predicted vs measured
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-went-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What went wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open question
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica6.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index3.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-did" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What we did
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#serial-monitor-register-readings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serial Monitor Register Readings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predicted-vs-measured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predicted vs measured
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-went-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What went wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open question
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="session-4-digital-inputs-and-bitmask-register-inspection-via-serial-monitor">Session 4 - Digital Inputs and Bitmask Register Inspection via Serial Monitor</h1>
+<hr />
+<p><strong>Goal:</strong> Understand how digital input states are mapped into CPU memory on the Raspberry Pi Pico 2 by reading raw 32-bit SIO input registers through the USB Serial Monitor, observing the decimal values obtained when applying voltage (3.3 V) and grounding pins for reset.</p>
+<p><strong>Prediction:</strong> Since digital GPIOs in the RP2350 SIO architecture are mapped directly to individual bit positions in a 32-bit input register, reading the raw port value when pulling a specific pin HIGH will output a decimal integer corresponding to its exact power of two ($2^{\text{pin}}$). Grounding the pin will clear the bit back to zero.</p>
+<hr />
+<h2 id="setup">Setup</h2>
+<ul>
+<li>Pin map:</li>
+<li>Input test pins: <code>GPIO1</code>, <code>GPIO6</code>, <code>GPIO16</code>.</li>
+<li>Common rails: 3.3 V (OUT) rail used to energize the target pin; GND rail used to pull it to 0 V for reset.</li>
+<li>
+<p>Indicator: Onboard LED (<code>PICO_DEFAULT_LED_PIN</code>).</p>
+</li>
+<li>
+<p>Non-default:</p>
+</li>
+<li>Modified line 45 of <code>CMakeLists.txt</code> to enable USB CDC output: <code>pico_enable_stdio_usb(${PROJECT_NAME} 1)</code> (changing the parameter from <code>0</code> to <code>1</code>) so the Serial Monitor in VS Code could display raw text prints.</li>
+</ul>
+<hr />
+<h2 id="what-we-did">What we did</h2>
+<ol>
+<li>Created a new project in VS Code with the Raspberry Pi Pico extension targeting the <strong>Pi Pico 2</strong>.</li>
+<li>Modified line 45 in <code>CMakeLists.txt</code> by placing a <code>1</code> on <code>pico_enable_stdio_usb</code> to route standard I/O streams directly to the USB connection.</li>
+<li>Initialized standard I/O via <code>stdio_init_all()</code> and configured target GPIO pins as digital inputs (<code>gpio_set_dir(pin, 0)</code>).</li>
+<li>Configured the main loop to continuously sample and print the integer value of the active pin register over the Serial Monitor.</li>
+<li>Manually applied 3.3 V to each individual pin and subsequently grounded it to observe the decimal value representation and verify register clearing.</li>
+<li>Monitored the console output in the VS Code Serial Monitor at 115200 baud, recording the resulting decimal values (<code>2</code>, <code>64</code>, <code>65536</code>).</li>
+</ol>
+<hr />
+<h2 id="evidence">Evidence</h2>
+<h3 id="serial-monitor-register-readings">Serial Monitor Register Readings</h3>
+<p><img alt="Setup Photo" src="../recursos/imgs/setup4.jpeg" /></p>
+<p><em>Figure 1: Photo demonstrating manual voltage assertion on input pins and the corresponding decimal values displayed on the Serial Monitor using GPIO 1 = 2.</em></p>
+<hr />
+<p><img alt="Setup Photo" src="../recursos/imgs/imput2.jpeg" /></p>
+<p><em>Figure 2: Photo demonstrating manual voltage assertion on input pins and the corresponding decimal values displayed on the Serial Monitor using GPIO 16 = 36536.</em></p>
+<hr />
+<p><img alt="Setup Photo" src="../recursos/imgs/imput3.jpeg" /></p>
+<p><em>Figure 3: Photo demonstrating manual voltage assertion on input pins and the corresponding decimal values displayed on the Serial Monitor using GPIO 6 = 64.</em></p>
+<hr />
+<h2 id="predicted-vs-measured">Predicted vs measured</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Tested Pin</th>
+<th style="text-align: center;">Applied State</th>
+<th style="text-align: center;">Predicted Bit</th>
+<th style="text-align: center;">Predicted Decimal ($2^{\text{pin}}$)</th>
+<th style="text-align: center;">Serial Monitor Reading</th>
+<th style="text-align: center;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>GPIO1</code></td>
+<td style="text-align: center;">3.3 V (HIGH)</td>
+<td style="text-align: center;">Bit 1</td>
+<td style="text-align: center;">$2^1 = 2$</td>
+<td style="text-align: center;"><code>2</code></td>
+<td style="text-align: center;">Verified</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>GPIO6</code></td>
+<td style="text-align: center;">3.3 V (HIGH)</td>
+<td style="text-align: center;">Bit 6</td>
+<td style="text-align: center;">$2^6 = 64$</td>
+<td style="text-align: center;"><code>64</code></td>
+<td style="text-align: center;">Verified</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>GPIO16</code></td>
+<td style="text-align: center;">3.3 V (HIGH)</td>
+<td style="text-align: center;">Bit 16</td>
+<td style="text-align: center;">$2^{16} = 65536$</td>
+<td style="text-align: center;"><code>65536</code></td>
+<td style="text-align: center;">Verified</td>
+</tr>
+<tr>
+<td style="text-align: center;">Any Pin</td>
+<td style="text-align: center;">GND (Reset)</td>
+<td style="text-align: center;">Bit cleared</td>
+<td style="text-align: center;"><code>0</code></td>
+<td style="text-align: center;"><code>0</code></td>
+<td style="text-align: center;">Verified</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="what-went-wrong">What went wrong</h2>
+<ul>
+<li>
+<p>When first opening the Serial Monitor in VS Code, no data was transmitted over the terminal. Standard I/O output in the default template was configured for UART rather than USB CDC. Setting <code>pico_enable_stdio_usb(${PROJECT_NAME} 1)</code> in line 45 of <code>CMakeLists.txt</code> resolved the communication pipeline.</p>
+</li>
+<li>
+<p>If an input pin was left disconnected (floating) without a direct connection to 3.3 V or GND, electrostatic noise caused erratic switching between states. Firmly asserting the pin to the 3.3 V rail and cleanly tying it to GND for reset produced consistent decimal outputs.</p>
+</li>
+</ul>
+<hr />
+<h2 id="code">Code</h2>
+<div class="language-text highlight"><pre><span></span><code>// Initialize pins as inputs
+for (int i = 0; i &lt; 3; i++) {
+    gpio_init(PINS[i]);
+    gpio_set_dir(PINS[i], 0);
+}
+
+while (true) {
+    // Read raw 32-bit input register from SIO
+    uint32_t raw_inputs = sio_hw-&gt;gpio_in;
+
+    // Print decimal value directly if any tested pin is high
+    if (raw_inputs &amp; ((1u &lt;&lt; 1) | (1u &lt;&lt; 6) | (1u &lt;&lt; 16))) {
+        printf("Register Value: %lu\n", (unsigned long)raw_inputs);
+        gpio_put(LED, 1);
+    } else {
+        gpio_put(LED, 0);
+    }
+
+    sleep_ms(200);
+}
+</code></pre></div>
+<h2 id="open-question">Open question</h2>
+<ul>
+<li>Since reading the full 32-bit input register returns the raw binary weight <code>2^ pin</code> rather than a normalized boolean (0 or 1), is reading the entire register at once computationally preferred when scanning buses or parallel ports compared to invoking individual pin-by-pin <code>gpio_get()</code> calls?</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

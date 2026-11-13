@@ -8,6 +8,14 @@ nav:
   - Session 4: practica4.md
   - Session 5: practica5.md
   - Session 6: practica6.md   
+  - Session 7: practica7.md
+  - Session 8: practica8.md
+  - Session 9: practica9.md
+  - Session 10: practica10.md
+  - Session 11: practica11.md
+  - Session 12: practica12.md
+  - Session 13: practica13.md
+  - Session 14: practica14.md
   - Final Project: index3.md
 
 markdown_extensions:
@@ -26,6 +34,7 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.blocks.caption
+  - pymdownx.arithmatex
   - admonition
   - pymdownx.details
   - pymdownx.emoji
@@ -40,7 +49,7 @@ theme:
   highlightjs: true 
   palette:
     - scheme: default
-      primary: indigo
+      primary: black
       accent: yellow
 
   features:

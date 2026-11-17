@@ -1,0 +1,1121 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../practica10/">
+      
+      
+        <link rel="next" href="../practica12/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Session 12 - SISTEMAS EMBEBIDOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#session-12-i2c-bus-communication-real-time-clock-ds1307-and-accelerometer-mpu6050" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SISTEMAS EMBEBIDOS" class="md-header__button md-logo" aria-label="SISTEMAS EMBEBIDOS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SISTEMAS EMBEBIDOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Session 12
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SISTEMAS EMBEBIDOS" class="md-nav__button md-logo" aria-label="SISTEMAS EMBEBIDOS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SISTEMAS EMBEBIDOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practicax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 12
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-did" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What we did
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-did_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What we did
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wokwi-i2c-simulation-serial-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wokwi I2C Simulation &amp; Serial Telemetry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predicted-vs-measured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predicted vs measured
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-went-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What went wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open question
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica13.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session 14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index3.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-did" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What we did
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-did_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What we did
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wokwi-i2c-simulation-serial-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wokwi I2C Simulation &amp; Serial Telemetry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predicted-vs-measured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predicted vs measured
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-went-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What went wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open question
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="session-12-i2c-bus-communication-real-time-clock-ds1307-and-accelerometer-mpu6050">Session 12 - I2C Bus Communication: Real-Time Clock (DS1307) and Accelerometer (MPU6050)</h1>
+<hr />
+<p><strong>Goal:</strong> Utilize the <code>I2C0</code> bus of the Raspberry Pi Pico in the Wokwi simulator at <code>400 kHz</code> to communicate with two peripheral slave devices sharing the same serial lines: reading timekeeping registers (<code>hours</code>, <code>minutes</code>, <code>seconds</code>) from a <strong>DS1307 Real-Time Clock (RTC)</strong> and 3-axis acceleration (<code>X</code>, <code>Y</code>, <code>Z</code>) from an <strong>MPU6050 IMU</strong>.</p>
+<p><strong>Prediction:</strong> With both slave devices addressed independently on the shared <code>I2C0</code> bus, the DS1307 time readout will increment cleanly by one second per sampling cycle, while the MPU6050 at rest will report approximately <code>0 g</code> on the horizontal <code>X</code> and <code>Y</code> axes and <code>1 g</code> (<code>16384</code> raw counts at <code>±2 g</code> full-scale range) along the vertical <code>Z</code> axis due to gravity.</p>
+<hr />
+<h2 id="setup">Setup</h2>
+<ul>
+<li>Pin map (Wokwi Simulation using independent <code>I2C0</code> and <code>I2C1</code> buses at <code>400 kHz</code>):</li>
+<li><strong>DS1307 RTC (<code>I2C0</code>, Address <code>0x68</code>):</strong> <code>GP4</code> (<code>SDA</code>), <code>GP5</code> (<code>SCL</code>), powered from <code>VBUS</code> (<code>5 V</code>).</li>
+<li><strong>MPU6050 IMU (<code>I2C1</code>, Address <code>0x68</code>):</strong> <code>GP2</code> (<code>SDA</code>), <code>GP3</code> (<code>SCL</code>), powered from <code>3V3</code> (<code>3.3 V</code>).</li>
+<li>
+<p><strong>Common Ground:</strong> <code>GND</code> pins of the Pi Pico, DS1307, and MPU6050 tied together.</p>
+</li>
+<li>
+<p>Photo:
+  <img alt="Wokwi Circuit Setup" src="assets/session11_wokwi_setup.png" /></p>
+</li>
+<li>
+<p>Non-default:</p>
+</li>
+<li>Allocated two separate hardware I2C controllers (<code>i2c0</code> and <code>i2c1</code>) to avoid a <code>0x68</code> slave address conflict between both modules.</li>
+<li>Internal pull-up resistors (<code>gpio_pull_up</code>) were enabled on all four serial lines (<code>GP2</code>, <code>GP3</code>, <code>GP4</code>, <code>GP5</code>), and both buses were initialized at Fast Mode (<code>400 kHz</code>).</li>
+</ul>
+<hr />
+<h2 id="what-we-did">What we did</h2>
+<h2 id="what-we-did_1">What we did</h2>
+<ol>
+<li>Wired the DS1307 RTC to <code>I2C0</code> (<code>GP4</code>/<code>GP5</code>) and the MPU6050 IMU to <code>I2C1</code> (<code>GP2</code>/<code>GP3</code>) in Wokwi, isolating both devices onto separate channels so their identical <code>0x68</code> default addresses would not collide.</li>
+<li>Initialized both <code>I2C0</code> and <code>I2C1</code> at <code>400 kHz</code> with internal pull-ups enabled and woke the MPU6050 from sleep mode by writing <code>0x00</code> to its power management register (<code>0x6B</code>).</li>
+<li><strong>DS1307 Time Acquisition (<code>I2C0</code>):</strong> Sent a single-byte write pointing to register <code>0x00</code> using a repeated start (<code>nostop = true</code>), then read <code>3</code> sequential bytes (<code>seconds</code>, <code>minutes</code>, <code>hours</code>).</li>
+<li>Masked control bits (<code>CH</code> clock-halt bit 7 in seconds and 12/24-hour mode bits in hours) and converted the Binary-Coded Decimal (BCD) nibbles into standard decimal integers (<code>((bcd &gt;&gt; 4) * 10) + (bcd &amp; 0x0F)</code>).</li>
+<li><strong>MPU6050 Acceleration Acquisition (<code>I2C1</code>):</strong> Pointed to the starting data register <code>0x3B</code> (<code>ACCEL_XOUT_H</code>) and burst-read <code>6</code> consecutive bytes, combining high and low bytes into signed 16-bit integers (<code>int16_t</code>) for <code>X</code>, <code>Y</code>, and <code>Z</code>.</li>
+<li>Printed both the formatted clock (<code>HH:MM:SS</code>) and raw/scaled acceleration values to the Serial Monitor every <code>1000 ms</code>.</li>
+</ol>
+<hr />
+<h2 id="evidence">Evidence</h2>
+<h3 id="wokwi-i2c-simulation-serial-telemetry">Wokwi I2C Simulation &amp; Serial Telemetry</h3>
+<video controls width="100%">
+  <source src="../recursos/vids/I2C_RTC_MPU6050_demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<p><em>Figure 1: Wokwi simulation recording showing simultaneous 1-second RTC increments and 3-axis accelerometer readings over I2C0.</em></p>
+<hr />
+<h2 id="predicted-vs-measured">Predicted vs measured</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Device / Parameter</th>
+<th style="text-align: center;">I2C Address &amp; Register</th>
+<th style="text-align: center;">Predicted Value</th>
+<th style="text-align: center;">Measured Raw Output</th>
+<th style="text-align: left;">Scaled / Decoded Output</th>
+<th style="text-align: center;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>DS1307 Time</strong> (<code>HH:MM:SS</code>)</td>
+<td style="text-align: center;"><code>0x68</code> / Reg <code>0x00</code> (<code>3 B</code>)</td>
+<td style="text-align: center;">Advances <code>+1 s</code> per cycle</td>
+<td style="text-align: center;">BCD bytes (<code>0x00</code>–<code>0x59</code>)</td>
+<td style="text-align: left;">Increments <code>1 s</code> per reading cleanly</td>
+<td style="text-align: center;">Verified</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MPU6050 Accel X</strong> (At rest)</td>
+<td style="text-align: center;"><code>0x68</code> / Reg <code>0x3B</code> (<code>2 B</code>)</td>
+<td style="text-align: center;"><code>0.00 g</code> (<code>0</code> counts)</td>
+<td style="text-align: center;"><code>0</code></td>
+<td style="text-align: left;"><code>0 / 16384 = 0.00 g</code></td>
+<td style="text-align: center;">Verified</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MPU6050 Accel Y</strong> (At rest)</td>
+<td style="text-align: center;"><code>0x68</code> / Reg <code>0x3D</code> (<code>2 B</code>)</td>
+<td style="text-align: center;"><code>0.00 g</code> (<code>0</code> counts)</td>
+<td style="text-align: center;"><code>0</code></td>
+<td style="text-align: left;"><code>0 / 16384 = 0.00 g</code></td>
+<td style="text-align: center;">Verified</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MPU6050 Accel Z</strong> (At rest)</td>
+<td style="text-align: center;"><code>0x68</code> / Reg <code>0x3F</code> (<code>2 B</code>)</td>
+<td style="text-align: center;"><code>+1.00 g</code> (<code>16384</code> counts)</td>
+<td style="text-align: center;"><code>16384</code></td>
+<td style="text-align: left;"><code>16384 / 16384 = +1.00 g</code></td>
+<td style="text-align: center;">Verified</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="what-went-wrong">What went wrong</h2>
+<ul>
+<li>Nothing went wrong during this practice; the simulated <code>I2C0</code> bus handled repeated-start register addressing cleanly, BCD bit-masking decoded the clock registers accurately, and the MPU6050 reported exact resting gravity counts.</li>
+</ul>
+<hr />
+<h2 id="code">Code</h2>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Essential logic: BCD-to-decimal conversion and DS1307 bit-masking</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">bcd_a_decimal</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">bcd</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">mascara_unidades</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">((</span><span class="n">bcd</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">bcd</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mascara_unidades</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// Clear bit 7 (Clock Halt flag) on seconds register</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">rtc_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="o">~</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"> </span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="n">segundos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bcd_a_decimal</span><span class="p">(</span><span class="n">rtc_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"> </span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="n">minutos</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">bcd_a_decimal</span><span class="p">(</span><span class="n">rtc_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1">// Mask upper bits to isolate 24-hour format digits</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">rtc_data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="p">((</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="kt">uint8_t</span><span class="w"> </span><span class="n">horas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bcd_a_decimal</span><span class="p">(</span><span class="n">rtc_data</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</span></code></pre></div>
+<h2 id="open-question">Open question</h2>
+<p>Currently, the Pico polls both <code>I2C0</code> and <code>I2C1</code> sequentially inside the main loop every second. How could we use the MPU6050's hardware <code>INT</code> pin to trigger an interrupt only when new acceleration data is ready, avoiding unnecessary bus transactions?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tooltips"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

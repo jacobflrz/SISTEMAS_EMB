@@ -17,7 +17,7 @@
   - Common ground tied between the Pico 2 GND rail and the breadboard bus.
 
 - Photo:
-  ![Setup Photo](recursos/imgs/imput.jpeg)
+  ![Setup Photo](recursos/imgs/setup5.jpeg)
 
 - Non-default: Internal pull-downs were activated in software on `GP2` and `GP3` so that active inputs read as clean logic `1` upon closure without requiring discrete external pull-down resistors.
 
@@ -39,16 +39,30 @@
 ### Logic Gates Demonstration (AND, OR, XOR)
 
 <video controls width="100%">
-  <source src="../recursos/vids/Logic_Gates_demo.mp4" type="video/mp4">
+  <source src="../recursos/vids/AND.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+*Figure 1: Verification of boolean truth table AND using digital input switches and a single output LED.*
+
+<video controls width="100%">
+  <source src="../recursos/vids/OR.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-*Figure 1: Verification of boolean truth tables (AND, OR, XOR) using digital input switches and a single output LED.*
+*Figure 2: Verification of boolean truth table OR using digital input switches and a single output LED.*
+
+<video controls width="100%">
+  <source src="../recursos/vids/XOR.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+*Figure 1: Verification of boolean truth table XOR using digital input switches and a single output LED.*
+
 
 ### Bidirectional Interactive Moving LED
 
 <video controls width="100%">
-  <source src="../recursos/vids/Moving_LED_demo.mp4" type="video/mp4">
+  <source src="../recursos/vids/MLED.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 

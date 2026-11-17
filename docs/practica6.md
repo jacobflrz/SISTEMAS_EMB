@@ -16,7 +16,7 @@
   - Common ground shared between the Pico 2 GND rail and the breadboard bus.
 
 - Photo:
-  ![Setup Photo](assets/session6_setup.png)
+  ![Setup Photo](recursos/imgs/setup6.jpeg)
 
 - Non-default: Internal pull resistors were explicitly disabled in software (`gpio_disable_pulls(BTN_PIN)`) to prevent conflict with the external 10\ &#x3A9; hardware pull-up network.
 
@@ -36,20 +36,27 @@
 ### Edge-Triggered Modes (`EDGE_RISE` & `EDGE_FALL`)
 
 <video controls width="100%">
-  <source src="../recursos/vids/IRQ_Edge_Modes.mp4" type="video/mp4">
+  <source src="../recursos/vids/edgerise.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-*Figure 1: Demonstration of LED toggling on button release (`EDGE_RISE`) and button press (`EDGE_FALL`) with an external pull-up.*
+*Figure 1: Demonstration of LED toggling on button release (`EDGE_RISE`) with an external pull-up.*
+
+<video controls width="100%">
+  <source src="../recursos/vids/EdgeFall.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+*Figure 2: Demonstration of LED toggling on button press (`EDGE_FALL`) with an external pull-up.*
 
 ### Level-Triggered Modes (`LEVEL_HIGH` & `LEVEL_LOW`)
 
 <video controls width="100%">
-  <source src="../recursos/vids/IRQ_Level_Modes.mp4" type="video/mp4">
+  <source src="../recursos/vids/MLED.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-*Figure 2: Demonstration of continuous ISR execution while the input remains asserted in `LEVEL_HIGH` and `LEVEL_LOW` configurations.*
+*Figure 3: Demonstration of continuous ISR execution while the input remains asserted in `LEVEL_HIGH` and `LEVEL_LOW` configurations.*
 
 ---
 

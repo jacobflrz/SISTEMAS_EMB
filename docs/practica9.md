@@ -1,4 +1,4 @@
-# Session 9 - Bidirectional UART Communication Between Two Picos
+# Session 10 - Bidirectional UART Communication Between Two Picos
 
 --- 
 

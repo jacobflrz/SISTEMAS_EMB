@@ -1,4 +1,4 @@
-# Session 8 - Building a Monophonic PWM Piano with Variable Frequency and Volume
+# Session 9 - Building a Monophonic PWM Piano with Variable Frequency and Volume
 
 --- 
 

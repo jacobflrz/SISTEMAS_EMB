@@ -1,4 +1,4 @@
-# Session 10 - Analog-to-Digital Conversion (ADC): Potentiometer, Temperature, and Brightness
+# Session 11 - Analog-to-Digital Conversion (ADC): Potentiometer, Temperature, and Brightness
 
 --- 
 

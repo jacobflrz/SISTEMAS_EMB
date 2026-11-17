@@ -1,4 +1,4 @@
-# Session 11 - I2C Bus Communication: Real-Time Clock (DS1307) and Accelerometer (MPU6050)
+# Session 12 - I2C Bus Communication: Real-Time Clock (DS1307) and Accelerometer (MPU6050)
 
 --- 
 

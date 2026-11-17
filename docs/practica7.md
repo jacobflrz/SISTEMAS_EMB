@@ -1,4 +1,4 @@
-# Session 7 - Fairground-Style LED Roulette using GPIO Interrupts
+# Session 8 - Fairground-Style LED Roulette using GPIO Interrupts
 
 --- 
 
